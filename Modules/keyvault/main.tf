@@ -1,12 +1,24 @@
 
 data "azurerm_resource_group" "this" {
-  for_each = var.key_vaults
-  name     = each.value.resource_group_name #this is wrong
+  for_each = data.azurerm_resource_group
+  name     = each.value.resource_group_name #this is probably wrong
 }
 
 # -
 # - Setup key vault 
-# -
+# - Trying local mapping for RGs
+/*
+locals {
+  rgs_map = {
+    for n in data.azurerm_resource_group.this :
+    n.name => {
+      name     = n.name
+      location = n.location
+      tags     = n.tags
+    }
+  }
+*/
+
 
 resource "azurerm_key_vault" "this" {
   for_each                        = var.key_vaults
