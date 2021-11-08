@@ -16,6 +16,24 @@ output "resource_group_tags_map" {
   value = module.resourceGroup.resource_group_tags_map
 }
 
+# Added output from key vault module
+
+output "key_vault_id" {
+  value = module.keyvaults.key_vault_id
+}
+
+output "key_vault_name" {
+  value = module.keyvaults.key_vault_name
+}
+
+output "key_vault_uri" {
+  value = module.keyvaults.key_vault_uri
+}
+
+output "key_vault" {
+ value = module.keyvaults.key_vault 
+}
+
 # #############################################################################
 # # OUTPUTS VNets, Subnets, Peering
 # #############################################################################

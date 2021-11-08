@@ -6,4 +6,8 @@ module "resourceGroup" {
 module "keyvaults" {
   source     = "./Modules/keyvault"
   key_vaults = var.key_vaults
+  # make sure resource groups are created first.
+  depends_on = [
+    module.resourceGroup
+  ]
 }
